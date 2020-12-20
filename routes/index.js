@@ -15,10 +15,10 @@ router.post('/place', async function (req, res, next) {
     } = req.body;
 
     if (!name || !category || !city || !state) {
-        res.redirect(`${req.headers.referer}mynearbyplaces/error`);
+        res.redirect(`${req.headers.referer}mynearbyplaces/#/error`);
     } else {
         const place = await Place.create({category, name, city, state, description: description || '', reviews: review || 0});
-        res.redirect(`${req.headers.referer}mynearbyplaces/success`);
+        res.redirect(`${req.headers.referer}mynearbyplaces/#/success`);
     }
 
     // res.render('index', { title: 'Express' });
@@ -32,7 +32,7 @@ router.get('/places', async function (req, res, next) {
 router.post('/review/:placeId', async function (req, res, next) {
     console.log(req.body, req.params)
     if (!req.body.review) {
-        res.redirect(`${req.headers.referer}mynearbyplaces/error`);
+        res.redirect(`${req.headers.referer}mynearbyplaces/#/error`);
     } else {
         await Place.increment({
             reviews: req.body.review,
