@@ -10,7 +10,7 @@ const db = new Sequelize('postgres://qakqezvczuxuhd:89850a80219e07bc6506b70bd8c5
     }
 });
 db.sync({
-    force: false
+    force: true
 })
 
 async function init() {
